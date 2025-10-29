@@ -91,7 +91,7 @@ export function isEmpty(obj: unknown): boolean {
 }
 
 /**
- * Merge objects deeply
+ * Merge objects deeply with prototype pollution protection
  */
 export function deepMerge<T extends Record<string, unknown>>(
   target: T,
@@ -103,7 +103,13 @@ export function deepMerge<T extends Record<string, unknown>>(
   
   if (source) {
     for (const key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
+      // Guard against prototype pollution
+      if (
+        Object.prototype.hasOwnProperty.call(source, key) &&
+        key !== '__proto__' &&
+        key !== 'constructor' &&
+        key !== 'prototype'
+      ) {
         const sourceValue = source[key];
         const targetValue = target[key];
         
