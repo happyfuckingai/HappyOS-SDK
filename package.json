@@ -1,0 +1,46 @@
+{
+  "name": "@happyos/sdk",
+  "version": "1.0.0",
+  "description": "AI Agent Operating System Framework - 100% AWS Native. Core framework for building, running and orchestrating intelligent AI agent systems.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "aws",
+    "orchestration",
+    "a2a",
+    "agent-to-agent",
+    "lambda",
+    "framework",
+    "happyos"
+  ],
+  "author": "Happy Ecosystem",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.0.0",
+    "@aws-sdk/client-eventbridge": "^3.0.0",
+    "@aws-sdk/client-lambda": "^3.0.0",
+    "@aws-sdk/client-sqs": "^3.0.0",
+    "@aws-sdk/lib-dynamodb": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
