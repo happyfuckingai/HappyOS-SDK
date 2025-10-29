@@ -177,11 +177,18 @@ Exponential backoff with configurable parameters:
   maxAttempts: 3,
   initialDelay: 1000,      // 1s
   backoffMultiplier: 2,    // 2x
-  maxDelay: 30000          // 30s
+  maxDelay: 30000          // 30s cap
 }
 
-Delays: 1s → 2s → 4s
+// Example delays between retries:
+// Attempt 1: Initial execution
+// Delay: 1s (1000ms)
+// Attempt 2: After 1s delay
+// Delay: 2s (2000ms, 1000 * 2)
+// Attempt 3: After 2s delay
+// Note: All delays are under maxDelay (30s)
 ```
+
 
 ### Fallback Strategy
 

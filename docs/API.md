@@ -360,11 +360,17 @@ class EventBridgePublisher {
 
 ### generateId
 
-Generate unique identifier.
+Generate unique identifier with timestamp and random suffix.
 
 ```typescript
 function generateId(prefix: string): string
 ```
+
+**Format**: `{prefix}-{timestamp}-{random9chars}`
+
+**Example**: `agent-1730211234567-a3b4c5d6e`
+
+**Note**: IDs are unique within a single process but not guaranteed across distributed systems. For distributed uniqueness, consider using UUIDs or a distributed ID generator.
 
 ### retryWithBackoff
 
