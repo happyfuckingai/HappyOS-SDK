@@ -2,7 +2,7 @@ import {
   A2ACommunicationBus,
   InMemoryMessageTransport
 } from '../communication/A2ACommunicationBus';
-import { MessagePriority } from '../types';
+import { MessagePriority, AgentMessage } from '../types';
 
 describe('A2ACommunicationBus', () => {
   let transport: InMemoryMessageTransport;
@@ -38,7 +38,7 @@ describe('A2ACommunicationBus', () => {
     });
 
     it('should set message priority', async () => {
-      let receivedMessage: any;
+      let receivedMessage: AgentMessage | undefined;
 
       bus.subscribe('agent-2', async (message) => {
         receivedMessage = message;
@@ -56,7 +56,7 @@ describe('A2ACommunicationBus', () => {
       await new Promise(resolve => setTimeout(resolve, 100));
 
       expect(receivedMessage).toBeDefined();
-      expect(receivedMessage.priority).toBe(MessagePriority.HIGH);
+      expect(receivedMessage?.priority).toBe(MessagePriority.HIGH);
     });
   });
 
@@ -117,7 +117,7 @@ describe('A2ACommunicationBus', () => {
 
   describe('Correlation', () => {
     it('should preserve correlation ID', async () => {
-      let receivedMessage: any;
+      let receivedMessage: AgentMessage | undefined;
 
       bus.subscribe('agent-2', async (message) => {
         receivedMessage = message;
@@ -133,7 +133,7 @@ describe('A2ACommunicationBus', () => {
 
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      expect(receivedMessage.correlationId).toBe('corr-123');
+      expect(receivedMessage?.correlationId).toBe('corr-123');
     });
   });
 });
